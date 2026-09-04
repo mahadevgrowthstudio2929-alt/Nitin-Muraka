@@ -2,204 +2,212 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-<title>Index Trading with CA Nitin Muraka</title>
+<title>Index Trading With CA Nitin Muraka</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
     width:100%;
-    min-height:100%;
+    height:100%;
+    overflow:hidden;
 }
 
 body{
-    font-family:Inter,Arial,Helvetica,sans-serif;
-    background:#030609;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#03070c;
     color:#fff;
-    overflow-x:hidden;
+    position:relative;
 }
 
 /* BACKGROUND */
 
 body::before{
     content:"";
-    position:fixed;
-    width:650px;
-    height:650px;
-    background:radial-gradient(circle,rgba(0,119,255,.18),transparent 65%);
-    top:-250px;
-    left:-200px;
-    z-index:-2;
+    position:absolute;
+    width:420px;
+    height:420px;
+    top:-190px;
+    left:-170px;
+    background:radial-gradient(
+        circle,
+        rgba(0,115,255,.22),
+        transparent 68%
+    );
 }
 
 body::after{
     content:"";
-    position:fixed;
-    width:550px;
-    height:550px;
-    background:radial-gradient(circle,rgba(0,174,255,.12),transparent 65%);
-    bottom:-250px;
+    position:absolute;
+    width:360px;
+    height:360px;
     right:-180px;
-    z-index:-2;
+    bottom:-180px;
+    background:radial-gradient(
+        circle,
+        rgba(0,180,255,.15),
+        transparent 68%
+    );
 }
 
 /* GRID */
 
 .grid{
-    position:fixed;
+    position:absolute;
     inset:0;
     background-image:
         linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
         linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-    background-size:45px 45px;
-    mask-image:linear-gradient(to bottom,black,transparent);
+    background-size:35px 35px;
     pointer-events:none;
-    z-index:-1;
 }
 
 /* MAIN */
 
-.container{
-    width:min(1100px,94%);
-    margin:auto;
-    padding:20px 0 35px;
+.main{
+    width:100%;
+    height:100vh;
+    min-height:540px;
+    padding:13px 15px 10px;
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    z-index:2;
 }
 
-/* TOP BAR */
+/* HEADER */
 
-.topbar{
+.header{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:10px 0 18px;
+    flex-shrink:0;
 }
 
 .brand{
     display:flex;
     align-items:center;
-    gap:11px;
+    gap:9px;
 }
 
-.brand img{
-    width:45px;
-    height:45px;
+.logo{
+    width:43px;
+    height:43px;
     border-radius:50%;
     object-fit:cover;
-    border:1px solid rgba(0,174,255,.5);
-    box-shadow:0 0 25px rgba(0,140,255,.22);
+    border:1px solid rgba(45,166,255,.55);
+    box-shadow:
+        0 0 18px rgba(0,130,255,.25);
 }
 
-.brand-text{
-    line-height:1.1;
-}
-
-.brand-text small{
+.brand-info small{
     display:block;
-    color:#6e8397;
-    font-size:9px;
-    letter-spacing:1.5px;
-    text-transform:uppercase;
+    color:#61768a;
+    font-size:7px;
+    letter-spacing:1.3px;
+    margin-bottom:3px;
 }
 
-.brand-text strong{
-    font-size:13px;
-    letter-spacing:.3px;
+.brand-info strong{
+    font-size:11px;
+    letter-spacing:.2px;
 }
 
-/* MARKET STATUS */
-
-.status{
+.live{
     display:flex;
     align-items:center;
-    gap:7px;
-    padding:8px 12px;
-    border:1px solid rgba(0,190,255,.18);
+    gap:5px;
+    padding:6px 8px;
+    border-radius:20px;
+    border:1px solid rgba(0,170,255,.18);
     background:rgba(255,255,255,.035);
-    border-radius:30px;
-    font-size:10px;
-    color:#8fa5b9;
+    color:#718597;
+    font-size:7px;
 }
 
-.status-dot{
-    width:7px;
-    height:7px;
-    background:#00d084;
+.live-dot{
+    width:5px;
+    height:5px;
+    background:#22d394;
     border-radius:50%;
-    box-shadow:0 0 10px #00d084;
+    box-shadow:0 0 8px #22d394;
     animation:pulse 1.5s infinite;
 }
 
 @keyframes pulse{
-    0%,100%{opacity:1;transform:scale(1)}
-    50%{opacity:.45;transform:scale(.7)}
+    0%,100%{
+        opacity:1;
+        transform:scale(1);
+    }
+    50%{
+        opacity:.4;
+        transform:scale(.7);
+    }
 }
 
 /* HERO */
 
 .hero{
-    position:relative;
     text-align:center;
-    padding:38px 10px 28px;
+    padding-top:27px;
+    flex-shrink:0;
 }
 
-.eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:7px 13px;
-    border-radius:30px;
-    border:1px solid rgba(0,156,255,.25);
-    background:rgba(0,123,255,.07);
-    color:#54b9ff;
-    font-size:10px;
-    font-weight:700;
-    letter-spacing:1.3px;
+.badge{
+    display:inline-block;
+    padding:6px 11px;
+    border-radius:20px;
+    border:1px solid rgba(0,145,255,.25);
+    background:rgba(0,120,255,.07);
+    color:#45b5ff;
+    font-size:7px;
+    font-weight:bold;
+    letter-spacing:1.2px;
     text-transform:uppercase;
-    animation:fadeUp .7s ease both;
-}
-
-.eyebrow span{
-    width:5px;
-    height:5px;
-    background:#32aaff;
-    border-radius:50%;
+    animation:up .7s ease;
 }
 
 h1{
-    margin:18px auto 12px;
-    max-width:850px;
-    font-size:clamp(32px,7vw,66px);
+    margin-top:11px;
+    font-size:37px;
     line-height:.98;
-    letter-spacing:-2.5px;
+    letter-spacing:-1.8px;
     font-weight:900;
-    animation:fadeUp .8s .1s ease both;
+    animation:up .8s .08s ease both;
 }
 
-h1 .blue{
-    background:linear-gradient(90deg,#fff,#42b8ff,#1687ff);
+.gradient{
+    background:linear-gradient(
+        90deg,
+        #ffffff,
+        #53bcff,
+        #1685ff
+    );
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
 
-.subtext{
-    max-width:650px;
-    margin:auto;
-    color:#91a2b2;
-    font-size:14px;
-    line-height:1.7;
-    animation:fadeUp .8s .2s ease both;
+.subtitle{
+    max-width:340px;
+    margin:10px auto 0;
+    color:#7f92a3;
+    font-size:10px;
+    line-height:1.5;
+    animation:up .8s .16s ease both;
 }
 
-@keyframes fadeUp{
+@keyframes up{
     from{
         opacity:0;
-        transform:translateY(18px);
+        transform:translateY(12px);
     }
     to{
         opacity:1;
@@ -207,167 +215,124 @@ h1 .blue{
     }
 }
 
-/* MINI MARKET STRIP */
+/* MARKET BAR */
 
-.market-strip{
-    margin:25px auto 0;
-    max-width:680px;
+.market{
     display:flex;
+    margin:18px auto 0;
+    width:100%;
+    max-width:390px;
+    border-radius:11px;
     overflow:hidden;
     border:1px solid rgba(255,255,255,.07);
-    border-radius:13px;
     background:rgba(255,255,255,.025);
-    animation:fadeUp .8s .3s ease both;
 }
 
-.market-item{
+.market-box{
     flex:1;
-    min-width:110px;
-    padding:11px 13px;
-    border-right:1px solid rgba(255,255,255,.06);
-    text-align:left;
+    padding:9px 5px;
+    border-right:1px solid rgba(255,255,255,.055);
 }
 
-.market-item:last-child{
+.market-box:last-child{
     border-right:0;
 }
 
-.market-name{
+.market-box span{
     display:block;
-    color:#697d90;
-    font-size:9px;
-    text-transform:uppercase;
+    color:#566b7d;
+    font-size:6px;
     letter-spacing:1px;
     margin-bottom:4px;
 }
 
-.market-value{
-    font-size:12px;
-    font-weight:700;
+.market-box strong{
+    font-size:8px;
 }
 
-.up{
-    color:#35d39a;
+.green{
+    color:#31d39a;
 }
 
 /* FEATURES */
 
 .features{
-    max-width:900px;
-    margin:28px auto 0;
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+    margin-top:10px;
+    flex-shrink:0;
 }
 
 .feature{
     position:relative;
-    padding:17px 12px;
-    border:1px solid rgba(255,255,255,.07);
-    background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.015));
-    border-radius:15px;
-    backdrop-filter:blur(12px);
+    padding:11px 9px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.065);
+    background:rgba(255,255,255,.035);
     overflow:hidden;
-    transition:.3s ease;
+    backdrop-filter:blur(10px);
+    animation:up .7s ease both;
 }
 
-.feature:hover{
-    transform:translateY(-4px);
-    border-color:rgba(0,157,255,.35);
-    box-shadow:0 15px 40px rgba(0,110,255,.08);
-}
-
-.feature::before{
+.feature::after{
     content:"";
     position:absolute;
-    width:70px;
-    height:70px;
+    width:60px;
+    height:60px;
+    right:-28px;
+    top:-28px;
+    background:rgba(0,145,255,.09);
     border-radius:50%;
-    background:rgba(0,145,255,.08);
-    top:-35px;
-    right:-30px;
 }
 
-.icon{
-    font-size:18px;
-    margin-bottom:8px;
+.feature-icon{
+    font-size:15px;
+    margin-bottom:5px;
 }
 
 .feature strong{
     display:block;
-    font-size:12px;
-    margin-bottom:4px;
+    font-size:9px;
+    margin-bottom:3px;
 }
 
 .feature p{
-    color:#738699;
-    font-size:9px;
-    line-height:1.45;
-}
-
-/* CONTENT CARD */
-
-.content{
-    max-width:900px;
-    margin:15px auto 0;
-    display:grid;
-    grid-template-columns:1.15fr .85fr;
-    gap:12px;
-}
-
-.card{
-    border:1px solid rgba(255,255,255,.07);
-    background:rgba(255,255,255,.025);
-    border-radius:17px;
-    padding:21px;
-    backdrop-filter:blur(15px);
-}
-
-.card-title{
-    font-size:11px;
-    color:#51b8ff;
-    text-transform:uppercase;
-    letter-spacing:1.5px;
-    font-weight:800;
-    margin-bottom:14px;
-}
-
-.points{
-    display:grid;
-    gap:10px;
-}
-
-.point{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    color:#b9c6d1;
-    font-size:11px;
-}
-
-.check{
-    width:20px;
-    height:20px;
-    display:grid;
-    place-items:center;
-    border-radius:6px;
-    background:rgba(0,145,255,.12);
-    border:1px solid rgba(0,145,255,.2);
-    color:#48b7ff;
-    font-size:10px;
+    color:#627789;
+    font-size:7px;
+    line-height:1.3;
 }
 
 /* CHART */
 
-.chart{
-    height:115px;
-    position:relative;
-    overflow:hidden;
+.chart-card{
+    margin-top:9px;
+    height:67px;
     border-radius:12px;
-    background:
-        linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
-    background-size:35px 28px;
+    border:1px solid rgba(255,255,255,.065);
+    background:rgba(255,255,255,.025);
+    overflow:hidden;
+    position:relative;
+    flex-shrink:0;
+}
+
+.chart-title{
+    position:absolute;
+    left:9px;
+    top:7px;
+    color:#587084;
+    font-size:6px;
+    letter-spacing:1px;
+    z-index:2;
+}
+
+.chart{
+    width:100%;
+    height:100%;
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:28px 20px;
 }
 
 .chart svg{
@@ -375,37 +340,30 @@ h1 .blue{
     height:100%;
 }
 
-.chart-line{
+.line{
     fill:none;
-    stroke:#25a9ff;
+    stroke:#21a8ff;
     stroke-width:2;
     stroke-linecap:round;
     stroke-linejoin:round;
-    filter:drop-shadow(0 0 5px rgba(0,160,255,.6));
-    stroke-dasharray:800;
-    stroke-dashoffset:800;
+    filter:drop-shadow(0 0 4px rgba(0,160,255,.65));
+    stroke-dasharray:600;
+    stroke-dashoffset:600;
     animation:draw 3s ease forwards infinite alternate;
 }
 
 @keyframes draw{
-    to{stroke-dashoffset:0}
-}
-
-.chart-label{
-    position:absolute;
-    top:8px;
-    left:9px;
-    font-size:8px;
-    color:#5e7385;
+    to{
+        stroke-dashoffset:0;
+    }
 }
 
 /* CTA */
 
-.cta-wrap{
-    margin:18px auto 0;
-    max-width:900px;
-    display:flex;
-    justify-content:center;
+.cta-area{
+    margin-top:auto;
+    padding-top:10px;
+    flex-shrink:0;
 }
 
 .cta{
@@ -413,21 +371,25 @@ h1 .blue{
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:10px;
-    width:min(100%,420px);
-    padding:16px 22px;
-    border-radius:13px;
+    gap:8px;
+    width:100%;
+    min-height:48px;
+    border-radius:12px;
     text-decoration:none;
-    color:white;
-    font-size:13px;
+    color:#fff;
+    background:linear-gradient(
+        100deg,
+        #075cff,
+        #008dff,
+        #0866ff
+    );
+    font-size:11px;
     font-weight:800;
-    letter-spacing:.2px;
-    background:linear-gradient(100deg,#075fff,#008cff,#0764ff);
     box-shadow:
-        0 10px 35px rgba(0,106,255,.25),
+        0 9px 28px rgba(0,105,255,.28),
         inset 0 1px 0 rgba(255,255,255,.25);
     overflow:hidden;
-    transition:.25s ease;
+    transition:.25s;
 }
 
 .cta::before{
@@ -435,379 +397,403 @@ h1 .blue{
     position:absolute;
     top:0;
     left:-100%;
-    width:70%;
+    width:65%;
     height:100%;
-    background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.3),
+        transparent
+    );
     transform:skewX(-20deg);
     animation:shine 3s infinite;
 }
 
 @keyframes shine{
-    0%{left:-100%}
-    45%,100%{left:140%}
+    0%{
+        left:-100%;
+    }
+    45%,100%{
+        left:140%;
+    }
 }
 
-.cta:hover{
-    transform:translateY(-2px);
-    box-shadow:0 15px 45px rgba(0,120,255,.35);
-}
-
-.telegram-icon{
-    width:24px;
-    height:24px;
+.telegram{
+    width:21px;
+    height:21px;
+    border-radius:50%;
     display:grid;
     place-items:center;
-    border-radius:50%;
-    background:rgba(255,255,255,.15);
+    background:rgba(255,255,255,.16);
+    font-size:10px;
 }
 
 /* DISCLAIMER */
 
 .disclaimer{
-    max-width:760px;
-    margin:15px auto 0;
     text-align:center;
-    color:#526474;
-    font-size:8px;
-    line-height:1.6;
+    color:#405261;
+    font-size:6px;
+    line-height:1.4;
+    padding:6px 4px 0;
 }
 
 /* FOOTER */
 
 .footer{
     text-align:center;
-    padding:20px 0 5px;
-    color:#435361;
-    font-size:8px;
-    letter-spacing:.5px;
+    color:#354552;
+    font-size:6px;
+    padding-top:4px;
 }
 
-.footer span{
-    color:#628198;
-}
+/* VERY SMALL PHONES */
 
-/* RESPONSIVE */
-
-@media(max-width:700px){
-
-    .container{
-        width:92%;
-        padding-top:14px;
-    }
-
-    .topbar{
-        padding-bottom:8px;
-    }
-
-    .brand img{
-        width:40px;
-        height:40px;
-    }
-
-    .brand-text strong{
-        font-size:11px;
-    }
-
-    .status{
-        font-size:8px;
-        padding:7px 9px;
-    }
+@media(max-height:650px){
 
     .hero{
-        padding:32px 0 18px;
+        padding-top:18px;
     }
 
     h1{
-        font-size:40px;
-        letter-spacing:-1.8px;
+        font-size:32px;
     }
 
-    .subtext{
-        font-size:12px;
-        line-height:1.6;
+    .subtitle{
+        margin-top:7px;
     }
 
-    .market-strip{
-        overflow-x:auto;
-    }
-
-    .market-item{
-        min-width:115px;
+    .market{
+        margin-top:12px;
     }
 
     .features{
-        grid-template-columns:repeat(2,1fr);
-        gap:8px;
+        margin-top:7px;
+    }
+
+    .chart-card{
+        height:52px;
+        margin-top:7px;
+    }
+
+    .cta{
+        min-height:44px;
+    }
+
+}
+
+@media(max-height:570px){
+
+    .hero{
+        padding-top:12px;
+    }
+
+    h1{
+        font-size:29px;
+    }
+
+    .subtitle{
+        display:none;
+    }
+
+    .market{
+        margin-top:9px;
     }
 
     .feature{
-        padding:14px 11px;
+        padding:8px;
     }
 
-    .content{
-        grid-template-columns:1fr;
+    .feature-icon{
+        font-size:12px;
+        margin-bottom:2px;
     }
 
-    .card{
-        padding:17px;
+    .chart-card{
+        display:none;
     }
 
-    .chart{
-        height:105px;
-    }
 }
 
-@media(max-width:390px){
-
-    h1{
-        font-size:35px;
-    }
-
-    .eyebrow{
-        font-size:8px;
-    }
-
-    .features{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .feature strong{
-        font-size:10px;
-    }
-
-    .feature p{
-        font-size:8px;
-    }
-}
 </style>
 </head>
+
 
 <body>
 
 <div class="grid"></div>
 
-<div class="container">
+<main class="main">
 
-    <!-- TOP BRANDING -->
+    <!-- HEADER -->
 
-    <div class="topbar">
+    <header class="header">
 
         <div class="brand">
-            <img src="logo.png" alt="CA Nitin Muraka">
-            <div class="brand-text">
-                <small>INDEX MARKET INSIGHTS</small>
-                <strong>CA Nitin Muraka</strong>
+
+            <img
+                src="logo.png"
+                alt="CA Nitin Muraka"
+                class="logo"
+            >
+
+            <div class="brand-info">
+
+                <small>
+                    INDEX MARKET INSIGHTS
+                </small>
+
+                <strong>
+                    CA Nitin Muraka
+                </strong>
+
             </div>
+
         </div>
 
-        <div class="status">
-            <span class="status-dot"></span>
-            Market Focus: INDEX
+
+        <div class="live">
+
+            <span class="live-dot"></span>
+
+            INDEX FOCUS
+
         </div>
 
-    </div>
+    </header>
 
 
     <!-- HERO -->
 
     <section class="hero">
 
-        <div class="eyebrow">
-            <span></span>
-            Index Trading With CA Nitin Muraka
+        <div class="badge">
+            INDEX TRADING • MARKET INSIGHTS
         </div>
 
         <h1>
             Trade With A
-            <span class="blue">Clearer View.</span>
+            <span class="gradient">
+                Clearer View.
+            </span>
         </h1>
 
-        <p class="subtext">
-            Practical index-market insights, structured analysis and
-            educational perspectives designed for traders who prefer
-            a disciplined approach to the market.
+        <p class="subtitle">
+            Structured index-market insights and
+            educational perspectives for traders
+            who prefer a disciplined approach.
         </p>
-
-
-        <!-- DECORATIVE MARKET TICKER -->
-
-        <div class="market-strip">
-
-            <div class="market-item">
-                <span class="market-name">BANK NIFTY</span>
-                <span class="market-value">INDEX • FOCUS</span>
-            </div>
-
-            <div class="market-item">
-                <span class="market-name">NIFTY 50</span>
-                <span class="market-value">INDEX • FOCUS</span>
-            </div>
-
-            <div class="market-item">
-                <span class="market-name">OPTIONS</span>
-                <span class="market-value up">MARKET VIEW</span>
-            </div>
-
-        </div>
 
     </section>
 
 
-    <!-- HIGHLIGHTS -->
+    <!-- MARKET STRIP -->
+
+    <div class="market">
+
+        <div class="market-box">
+
+            <span>
+                BANK NIFTY
+            </span>
+
+            <strong>
+                INDEX
+            </strong>
+
+        </div>
+
+
+        <div class="market-box">
+
+            <span>
+                NIFTY 50
+            </span>
+
+            <strong>
+                INDEX
+            </strong>
+
+        </div>
+
+
+        <div class="market-box">
+
+            <span>
+                MARKET VIEW
+            </span>
+
+            <strong class="green">
+                ACTIVE
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- FEATURES -->
 
     <section class="features">
 
         <div class="feature">
-            <div class="icon">🎯</div>
-            <strong>Zero Hero Calls</strong>
-            <p>Focused approach towards structured index-market analysis.</p>
+
+            <div class="feature-icon">
+                🎯
+            </div>
+
+            <strong>
+                Zero Hero Calls
+            </strong>
+
+            <p>
+                Focused & structured
+                market approach.
+            </p>
+
         </div>
 
-        <div class="feature">
-            <div class="icon">🛡️</div>
-            <strong>SEBI Registered Expert</strong>
-            <p>Expert-led market insights, subject to applicable credentials.</p>
-        </div>
 
         <div class="feature">
-            <div class="icon">📊</div>
-            <strong>Index Focused</strong>
-            <p>Dedicated perspective on major Indian market indices.</p>
+
+            <div class="feature-icon">
+                🛡️
+            </div>
+
+            <strong>
+                SEBI Registered Expert
+            </strong>
+
+            <p>
+                Expert-led market
+                insights.
+            </p>
+
         </div>
 
+
         <div class="feature">
-            <div class="icon">⚡</div>
-            <strong>Market Insights</strong>
-            <p>Clear and concise information for an informed market view.</p>
+
+            <div class="feature-icon">
+                📊
+            </div>
+
+            <strong>
+                Index Focused
+            </strong>
+
+            <p>
+                Dedicated index-market
+                perspective.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                ⚡
+            </div>
+
+            <strong>
+                Clear Insights
+            </strong>
+
+            <p>
+                Concise market
+                observations.
+            </p>
+
         </div>
 
     </section>
 
 
-    <!-- LOWER CONTENT -->
+    <!-- DECORATIVE CHART -->
 
-    <section class="content">
+    <div class="chart-card">
 
-        <div class="card">
+        <div class="chart-title">
+            MARKET PERSPECTIVE
+        </div>
 
-            <div class="card-title">
-                What You Get
-            </div>
+        <div class="chart">
 
-            <div class="points">
+            <svg
+                viewBox="0 0 500 100"
+                preserveAspectRatio="none"
+            >
 
-                <div class="point">
-                    <div class="check">✓</div>
-                    Index-market focused insights
-                </div>
+                <polyline
+                    class="line"
+                    points="
+                    0,78
+                    35,72
+                    65,76
+                    95,58
+                    125,63
+                    155,42
+                    185,51
+                    215,36
+                    245,43
+                    275,26
+                    305,34
+                    335,19
+                    365,28
+                    395,15
+                    425,22
+                    455,10
+                    500,15
+                    "
+                />
 
-                <div class="point">
-                    <div class="check">✓</div>
-                    Structured market analysis
-                </div>
-
-                <div class="point">
-                    <div class="check">✓</div>
-                    Trading-oriented educational perspectives
-                </div>
-
-                <div class="point">
-                    <div class="check">✓</div>
-                    Clear market observations
-                </div>
-
-            </div>
+            </svg>
 
         </div>
 
-
-        <!-- DECORATIVE CHART -->
-
-        <div class="card">
-
-            <div class="card-title">
-                Market Perspective
-            </div>
-
-            <div class="chart">
-
-                <div class="chart-label">
-                    INDEX VIEW
-                </div>
-
-                <svg viewBox="0 0 500 140" preserveAspectRatio="none">
-
-                    <polyline
-                        class="chart-line"
-                        points="
-                        0,108
-                        35,100
-                        65,105
-                        95,80
-                        125,88
-                        155,62
-                        185,73
-                        215,50
-                        245,57
-                        275,38
-                        305,48
-                        335,25
-                        365,38
-                        395,20
-                        425,30
-                        455,12
-                        500,18
-                        "
-                    />
-
-                </svg>
-
-            </div>
-
-        </div>
-
-    </section>
+    </div>
 
 
     <!-- CTA -->
 
-    <div class="cta-wrap">
+    <div class="cta-area">
 
         <a
-            class="cta"
             href="https://t.me/+dX7U27F_Gf8wNWZl"
             target="_blank"
             rel="noopener noreferrer"
+            class="cta"
         >
 
-            <span class="telegram-icon">➤</span>
+            <span class="telegram">
+                ➤
+            </span>
 
             Get The Market View on Telegram
 
         </a>
 
+
+        <div class="disclaimer">
+
+            Market information is for educational and
+            informational purposes only. Trading involves
+            market risk. Make decisions according to your
+            own research and risk profile.
+
+        </div>
+
+
+        <div class="footer">
+
+            Index Trading with CA Nitin Muraka (SMS)
+
+        </div>
+
     </div>
 
-
-    <!-- DISCLAIMER -->
-
-    <div class="disclaimer">
-        Market information and insights are provided for educational and
-        informational purposes only. Trading and investing involve market
-        risk. Please conduct your own research and consider your risk
-        profile before making any financial decision.
-    </div>
-
-
-    <!-- FOOTER -->
-
-    <div class="footer">
-        Index Trading with CA Nitin Muraka (SMS)
-        <br>
-        <span>Independent Market Insights • For Informational Purposes</span>
-    </div>
-
-</div>
+</main>
 
 </body>
 </html>
